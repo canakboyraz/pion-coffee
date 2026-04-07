@@ -1,0 +1,183 @@
+{
+  "categories": [
+    {
+      "id": "espresso",
+      "name": "Espresso Seçenekleri",
+      "description": "İtalyan tarzı yoğun aromalı kahveler",
+      "items": [
+        {
+          "id": 1,
+          "name": "Espresso",
+          "description": "Tek şut espresso, yoğun aroma",
+          "price": "35 ₺",
+          "image": "https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=400&h=300&fit=crop",
+          "popular": true
+        },
+        {
+          "id": 2,
+          "name": "Doppio",
+          "description": "Çift shot espresso",
+          "price": "50 ₺",
+          "image": "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=400&h=300&fit=crop",
+          "popular": false
+        },
+        {
+          "id": 3,
+          "name": "Americano",
+          "description": "Espresso ve sıcak su",
+          "price": "40 ₺",
+          "image": "https://images.unsplash.com/photo-1485808191679-5f86510681a2?w=400&h=300&fit=crop",
+          "popular": true
+        }
+      ]
+    },
+    {
+      "id": "sicak-kahve",
+      "name": "Sıcak Kahveler",
+      "description": "Yumuşak tatlı kahve çeşitleri",
+      "items": [
+        {
+          "id": 4,
+          "name": "Cappuccino",
+          "description": "Espresso, buharda süt ve köpük",
+          "price": "45 ₺",
+          "image": "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&h=300&fit=crop",
+          "popular": true
+        },
+        {
+          "id": 5,
+          "name": "Latte",
+          "description": "Espresso ve buharda süt",
+          "price": "45 ₺",
+          "image": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=300&fit=crop",
+          "popular": true
+        },
+        {
+          "id": 6,
+          "name": "Mocha",
+          "description": "Espresso, süt ve çikolata sosu",
+          "price": "50 ₺",
+          "image": "https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=400&h=300&fit=crop",
+          "popular": false
+        },
+        {
+          "id": 7,
+          "name": "Macchiato",
+          "description": "Espresso ve az köpüklü süt",
+          "price": "40 ₺",
+          "image": "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=400&h=300&fit=crop",
+          "popular": false
+        },
+        {
+          "id": 8,
+          "name": "Flat White",
+          "description": "Espresso ve ince süt köpüğü",
+          "price": "45 ₺",
+          "image": "https://images.unsplash.com/photo-1534778101976-62847782c213?w=400&h=300&fit=crop",
+          "popular": false
+        }
+      ]
+    },
+    {
+      "id": "turk-kahvesi",
+      "name": "Türk Kahvesi",
+      "description": "Geleneksel Türk kahvesi çeşitleri",
+      "items": [
+        {
+          "id": 9,
+          "name": "Türk Kahvesi",
+          "description": "Geleneksel cezve ikramı",
+          "price": "40 ₺",
+          "image": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&h=300&fit=crop",
+          "popular": true
+        },
+        {
+          "id": 10,
+          "name": "Dibek Kahvesi",
+          "description": "Özel kavrulmuş çekirdek",
+          "price": "45 ₺",
+          "image": "https://images.unsplash.com/photo-1559496417-e7f25cb247f3?w=400&h=300&fit=crop",
+          "popular": false
+        },
+        {
+          "id": 11,
+          "name": "Menengiç Kahvesi",
+          "description": "Gaziantep'ten özel menengiç",
+          "price": "45 ₺",
+          "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&h=300&fit=crop",
+          "popular": false
+        }
+      ]
+    },
+    {
+      "id": "soguk-icecek",
+      "name": "Soğuk İçecekler",
+      "description": "Serinletici yaz içecekleri",
+      "items": [
+        {
+          "id": 12,
+          "name": "Iced Latte",
+          "description": "Buzlu latte",
+          "price": "50 ₺",
+          "image": "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=400&h=300&fit=crop",
+          "popular": true
+        },
+        {
+          "id": 13,
+          "name": "Cold Brew",
+          "description": "12 saat soğuk demleme",
+          "price": "50 ₺",
+          "image": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=300&fit=crop",
+          "popular": true
+        },
+        {
+          "id": 14,
+          "name": "Frappe",
+          "description": "Buzlu espresso karışımı",
+          "price": "45 ₺",
+          "image": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=300&fit=crop",
+          "popular": false
+        }
+      ]
+    },
+    {
+      "id": "pastane",
+      "name": "Pastane & Snack",
+      "description": "Taze tatlılar ve atıştırmalıklar",
+      "items": [
+        {
+          "id": 15,
+          "name": "Cheesecake",
+          "description": "Krem peynirli tatlı",
+          "price": "60 ₺",
+          "image": "https://images.unsplash.com/photo-1567327613485-fbc7bf196198?w=400&h=300&fit=crop",
+          "popular": true
+        },
+        {
+          "id": 16,
+          "name": "Tiramisu",
+          "description": "İtalyan tatlısı",
+          "price": "65 ₺",
+          "image": "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&h=300&fit=crop",
+          "popular": false
+        },
+        {
+          "id": 17,
+          "name": "Brownie",
+          "description": "Çikolatalı brownie",
+          "price": "45 ₺",
+          "image": "https://images.unsplash.com/photo-1564355808539-22fda35bed7e?w=400&h=300&fit=crop",
+          "popular": false
+        },
+        {
+          "id": 18,
+          "name": "Kurabiye",
+          "description": "Çeşitli kurabiyeler",
+          "price": "30 ₺",
+          "image": "https://images.unsplash.com/photo-1558326567-98ae2405596b?w=400&h=300&fit=crop",
+          "popular": false
+        }
+      ]
+    }
+  ]
+}

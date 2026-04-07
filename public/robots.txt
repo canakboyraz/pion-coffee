@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /_next/
+Disallow: /admin/
+
+Sitemap: https://pioncoffee.com/sitemap.xml
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Crawl delay in seconds
+Crawl-delay: 1
+Request-rate: 30/60
