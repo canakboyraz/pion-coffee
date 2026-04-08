@@ -4,54 +4,30 @@ import { useState } from 'react'
 const galleryItems = [
   {
     id: 1,
-    src: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&h=600&fit=crop',
-    alt: 'Pion Coffee iç mekan',
-    category: 'mekan',
-  },
-  {
-    id: 2,
-    src: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&h=600&fit=crop',
-    alt: 'Kahve köşesi',
-    category: 'mekan',
-  },
-  {
-    id: 3,
     src: 'https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=800&h=600&fit=crop',
     alt: 'Espresso hazırlama',
     category: 'kahve',
   },
   {
-    id: 4,
+    id: 2,
     src: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=800&h=600&fit=crop',
     alt: 'Cappuccino',
     category: 'kahve',
   },
   {
-    id: 5,
+    id: 3,
     src: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=800&h=600&fit=crop',
     alt: 'Latte art',
     category: 'kahve',
   },
   {
-    id: 6,
-    src: 'https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800&h=600&fit=crop',
-    alt: 'Pion Coffee masa',
-    category: 'mekan',
-  },
-  {
-    id: 7,
+    id: 4,
     src: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=800&h=600&fit=crop',
     alt: 'Türk kahvesi',
     category: 'kahve',
   },
   {
-    id: 8,
-    src: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&h=600&fit=crop',
-    alt: 'Kahve dükkanı gece',
-    category: 'mekan',
-  },
-  {
-    id: 9,
+    id: 5,
     src: 'https://images.unsplash.com/photo-1507914997854-6b74c4e0a58f?w=800&h=600&fit=crop',
     alt: 'Pastane ürünleri',
     category: 'yiyecek',
@@ -60,7 +36,6 @@ const galleryItems = [
 
 const categories = [
   { id: 'hepsi', label: 'Hepsi' },
-  { id: 'mekan', label: 'Mekanımız' },
   { id: 'kahve', label: 'Kahvelerimiz' },
   { id: 'yiyecek', label: 'Yiyecekler' },
 ]
