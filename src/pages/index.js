@@ -221,10 +221,7 @@ export default function HomePage() {
                   <p className="text-coffee-700 text-sm mb-3">
                     {product.description}
                   </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-primary-500 font-bold text-lg">
-                      {product.price}
-                    </span>
+                  <div>
                     <Link
                       href="/menu"
                       className="text-sm text-coffee-700 hover:text-primary-500 transition-colors duration-200"

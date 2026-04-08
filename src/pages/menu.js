@@ -99,11 +99,8 @@ export default function MenuPage() {
                   <p className="text-coffee-700 mb-4 min-h-[50px]">
                     {item.description}
                   </p>
-                  <div className="flex items-center justify-between border-t border-coffee-100 pt-4">
-                    <span className="text-2xl font-bold text-primary-500">
-                      {item.price}
-                    </span>
-                    <button className="btn-coffee text-sm px-4 py-2">
+                  <div className="border-t border-coffee-100 pt-4">
+                    <button className="btn-coffee text-sm px-4 py-2 w-full">
                       Sipariş Ver
                     </button>
                   </div>
