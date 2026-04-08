@@ -53,9 +53,11 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-full bg-coffee-600 flex items-center justify-center">
-                <span className="text-white font-serif font-bold text-xl">P</span>
-              </div>
+              <img
+                src="https://i.ibb.co/DDngbP1N/P-on-logo-3-01.png"
+                alt="Pion Coffee Logo"
+                className="w-12 h-12 rounded-full object-cover"
+              />
               <div>
                 <span className="text-white font-serif text-2xl font-semibold tracking-wide">
                   Pion Coffee

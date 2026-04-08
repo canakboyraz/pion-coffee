@@ -42,9 +42,11 @@ export default function Header() {
             href="/"
             className="flex items-center gap-3 group"
           >
-            <div className="w-10 h-10 rounded-full bg-coffee-700 flex items-center justify-center group-hover:bg-coffee-600 transition-colors duration-300">
-              <span className="text-white font-serif font-bold text-lg">P</span>
-            </div>
+            <img
+              src="https://i.ibb.co/DDngbP1N/P-on-logo-3-01.png"
+              alt="Pion Coffee Logo"
+              className="w-10 h-10 rounded-full object-cover"
+            />
             <div>
               <span className="text-white font-serif text-xl font-semibold tracking-wide">
                 Pion Coffee

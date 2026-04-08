@@ -4,7 +4,7 @@ import { useState } from 'react'
 const galleryItems = [
   {
     id: 1,
-    src: 'https://ibb.co/Y7GTW4N6=crop',
+    src: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&h=600&fit=crop',
     alt: 'Pion Coffee iç mekan',
     category: 'mekan',
   },
