@@ -125,7 +125,7 @@ export default function IletisimPage() {
               {/* Google Maps */}
               <div className="rounded-xl overflow-hidden shadow-md">
                 <iframe
-                  src="https://maps.google.com/maps?q=Hem%C5%9Fire+Sokak+No:9+Dumlup%C4%B1nar+Mahallesi+Kartepe+Kocaeli&output=embed"
+                  src="https://maps.google.com/maps?q=37.0452,30.1234&output=embed"
                   width="100%"
                   height="250"
                   style={{ border: 0 }}
@@ -137,7 +137,7 @@ export default function IletisimPage() {
               </div>
 
               <a
-                href="https://maps.google.com/?q=Hemsire+Sokak+No+9+Dumlupinar+Mahallesi+Kartepe+Kocaeli"
+                href="https://maps.app.goo.gl/CD9CRd66SH4kEc626?g_st=iw"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-coffee mt-4 inline-flex items-center gap-2"

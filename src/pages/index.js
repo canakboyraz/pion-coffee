@@ -323,7 +323,7 @@ export default function HomePage() {
               İletişime Geçin
             </Link>
             <a
-              href="https://maps.google.com/?q=Hemsire+Sokak+No+9+Dumlupinar+Mahallesi+Kartepe+Kocaeli"
+              href="https://maps.app.goo.gl/CD9CRd66SH4kEc626?g_st=iw"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-lg font-medium rounded-lg text-white hover:bg-white hover:text-coffee-900 transition-all duration-300"
