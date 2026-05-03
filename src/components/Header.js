@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 
 const navLinks = [
   { href: '/', label: 'Ana Sayfa' },
-  { href: '/menu', label: 'Menü' },
+  { href: '/qr-menu', label: 'Menü' },
   { href: '/hakkimizda', label: 'Hakkımızda' },
   { href: '/galeri', label: 'Galeri' },
   { href: '/iletisim', label: 'İletişim' },
