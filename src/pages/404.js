@@ -24,7 +24,7 @@ export default function Custom404() {
             <Link href="/" className="btn-coffee text-lg px-8 py-4">
               Ana Sayfaya Dön
             </Link>
-            <Link href="/menu" className="btn-secondary text-lg px-8 py-4">
+            <Link href="/qr-menu" className="btn-secondary text-lg px-8 py-4">
               Menüyü Görün
             </Link>
           </div>

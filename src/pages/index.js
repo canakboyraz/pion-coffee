@@ -155,7 +155,7 @@ export default function HomePage() {
             Her fincanda mükemmel deneyim.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/menu" className="btn-coffee text-lg px-8 py-4">
+            <Link href="/qr-menu" className="btn-coffee text-lg px-8 py-4">
               Menüyü İncele
             </Link>
             <Link href="/iletisim" className="btn-secondary text-lg px-8 py-4 !text-white !border-white hover:!bg-white hover:!text-coffee-900">
@@ -223,7 +223,7 @@ export default function HomePage() {
                   </p>
                   <div>
                     <Link
-                      href="/menu"
+                      href="/qr-menu"
                       className="text-sm text-coffee-700 hover:text-primary-500 transition-colors duration-200"
                     >
                       Tümünü Gör →
@@ -234,7 +234,7 @@ export default function HomePage() {
             ))}
           </div>
           <div className="text-center mt-10">
-            <Link href="/menu" className="btn-primary text-lg px-8 py-4">
+            <Link href="/qr-menu" className="btn-primary text-lg px-8 py-4">
               Tüm Menüyü Görün
             </Link>
           </div>
