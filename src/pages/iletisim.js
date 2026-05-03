@@ -125,7 +125,7 @@ export default function IletisimPage() {
               {/* Google Maps */}
               <div className="rounded-xl overflow-hidden shadow-md">
                 <iframe
-                  src="https://maps.google.com/maps?q=37.0452,30.1234&output=embed"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3017.6261!2d30.2067!3d38.6899!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14bbd8f0b0a0b0b0%3A0x0!2sPion%20Coffee!5f0.3m0!1f0!2f0!4f0!5f0!5f0!5m2!1e1!1u!1e1!1e3!3m1!1e1"
                   width="100%"
                   height="250"
                   style={{ border: 0 }}
