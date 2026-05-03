@@ -1,9 +1,10 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { useState } from 'react'
 import menuData from '../data/menu.json'
 
 export default function QrMenuPage() {
-  const menuUrl = 'https://pioncoffee.com/menu'
+  const [selectedImage, setSelectedImage] = useState(null)
 
   const categoryImages = [
     {
@@ -20,7 +21,6 @@ export default function QrMenuPage() {
     },
   ]
 
-  // Tüm ürünleri düz liste olarak al
   const allItems = menuData.categories.flatMap(cat => cat.items)
 
   return (
@@ -45,36 +45,26 @@ export default function QrMenuPage() {
           <p className="text-coffee-600 text-sm">Self-Servis Kahve • Kartepe</p>
         </div>
 
-        {/* Kategori Görselleri */}
-        <div className="grid grid-cols-3 gap-2 max-w-lg mx-auto mb-4">
+        {/* Kategori Görselleri - Tiklanabilir */}
+        <div className="grid grid-cols-3 gap-2 max-w-lg mx-auto mb-6">
           {categoryImages.map((cat, index) => (
-            <div key={index} className="relative rounded-lg overflow-hidden">
+            <button
+              key={index}
+              onClick={() => setSelectedImage(cat)}
+              className="relative rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity"
+            >
               <img
                 src={cat.src}
                 alt={cat.name}
-                className="w-full h-20 object-cover"
+                className="w-full h-28 object-cover"
               />
               <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
                 <span className="text-white text-xs font-semibold text-center px-1">
                   {cat.name}
                 </span>
               </div>
-            </div>
+            </button>
           ))}
-        </div>
-
-        {/* QR Code */}
-        <div className="bg-white p-4 rounded-xl shadow-md mx-auto max-w-xs mb-6">
-          <img
-            src={`https://chart.googleapis.com/chart?cht=qr&chs=220x220&chl=${encodeURIComponent(menuUrl)}&choe=UTF-8&chld=L|0`}
-            alt="QR Kod"
-            width={220}
-            height={220}
-            className="mx-auto"
-          />
-          <p className="text-center text-coffee-600 text-xs mt-2">
-            Menüyü görmek için tarayın
-          </p>
         </div>
 
         {/* Ürün Listesi */}
@@ -86,7 +76,6 @@ export default function QrMenuPage() {
           <div className="space-y-3">
             {allItems.map((item) => (
               <div key={item.id} className="bg-white rounded-lg shadow-sm overflow-hidden flex">
-                {/* Görsel */}
                 <div className="w-24 h-24 flex-shrink-0">
                   <img
                     src={item.image}
@@ -94,7 +83,6 @@ export default function QrMenuPage() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                {/* Bilgi */}
                 <div className="p-3 flex-1 flex flex-col justify-center">
                   <h3 className="font-semibold text-coffee-900 text-sm">
                     {item.name}
@@ -137,6 +125,31 @@ export default function QrMenuPage() {
           </Link>
         </div>
       </section>
+
+      {/* Buyuk Resim Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button 
+            className="absolute top-4 right-4 text-white text-3xl font-bold hover:text-gray-300"
+            onClick={() => setSelectedImage(null)}
+          >
+            &times;
+          </button>
+          <div className="max-w-3xl w-full">
+            <img
+              src={selectedImage.src}
+              alt={selectedImage.name}
+              className="w-full h-auto rounded-lg"
+            />
+            <p className="text-white text-center mt-4 text-lg font-semibold">
+              {selectedImage.name}
+            </p>
+          </div>
+        </div>
+      )}
 
       <style jsx global>{`
         @media print {
