@@ -40,7 +40,7 @@ const features = [
       </svg>
     ),
     title: 'Self-Servis Konsept',
-    description: 'Modern ve hızlı, kendi kahvenizi kendiniz hazırlayın',
+    description: 'Modern, hızlı, huzurlu, keyifli bir atmosfer',
   },
   {
     icon: (
@@ -57,8 +57,8 @@ const features = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
-    title: '7/24 Açık',
-    description: 'Erken sabahtan gece geç saatlere kadar hizmetinizdeyiz',
+    title: '7 gün açığız',
+    description: 'Sabah 10:00 - akşam 24:00 saatlere kadar hizmetinizdeyiz',
   },
 ]
 
