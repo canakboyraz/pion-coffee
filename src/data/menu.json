@@ -10,7 +10,7 @@
           "name": "Espresso",
           "description": "Tek şut espresso, yoğun aroma",
           "price": "35 ₺",
-          "image": "/images/menu/espresso.jpg",
+          "image": "https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=400&h=300&fit=crop",
           "popular": true
         },
         {
@@ -18,7 +18,7 @@
           "name": "Doppio",
           "description": "Çift shot espresso",
           "price": "50 ₺",
-          "image": "/images/menu/doppio.jpg",
+          "image": "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=400&h=300&fit=crop",
           "popular": false
         },
         {
@@ -26,7 +26,7 @@
           "name": "Americano",
           "description": "Espresso ve sıcak su",
           "price": "40 ₺",
-          "image": "/images/menu/americano.jpg",
+          "image": "https://images.unsplash.com/photo-1485808191679-5f86510681a2?w=400&h=300&fit=crop",
           "popular": true
         }
       ]
@@ -41,7 +41,7 @@
           "name": "Cappuccino",
           "description": "Espresso, buharda süt ve köpük",
           "price": "45 ₺",
-          "image": "/images/menu/cappuccino.jpg",
+          "image": "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&h=300&fit=crop",
           "popular": true
         },
         {
@@ -49,7 +49,7 @@
           "name": "Latte",
           "description": "Espresso ve buharda süt",
           "price": "45 ₺",
-          "image": "/images/menu/latte.jpg",
+          "image": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=300&fit=crop",
           "popular": true
         },
         {
@@ -57,7 +57,7 @@
           "name": "Mocha",
           "description": "Espresso, süt ve çikolata sosu",
           "price": "50 ₺",
-          "image": "/images/menu/mocha.jpg",
+          "image": "https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=400&h=300&fit=crop",
           "popular": false
         },
         {
@@ -65,7 +65,7 @@
           "name": "Macchiato",
           "description": "Espresso ve az köpüklü süt",
           "price": "40 ₺",
-          "image": "/images/menu/macchiato.jpg",
+          "image": "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=400&h=300&fit=crop",
           "popular": false
         },
         {
@@ -73,7 +73,7 @@
           "name": "Flat White",
           "description": "Espresso ve ince süt köpüğü",
           "price": "45 ₺",
-          "image": "/images/menu/flat-white.jpg",
+          "image": "https://images.unsplash.com/photo-1534778101976-62847782c213?w=400&h=300&fit=crop",
           "popular": false
         }
       ]
@@ -88,7 +88,7 @@
           "name": "Türk Kahvesi",
           "description": "Geleneksel cezve ikramı",
           "price": "40 ₺",
-          "image": "/images/menu/turk-kahvesi.jpg",
+          "image": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&h=300&fit=crop",
           "popular": true
         },
         {
@@ -96,7 +96,7 @@
           "name": "Dibek Kahvesi",
           "description": "Özel kavrulmuş çekirdek",
           "price": "45 ₺",
-          "image": "/images/menu/dibek.jpg",
+          "image": "https://images.unsplash.com/photo-1559496417-e7f25cb247f3?w=400&h=300&fit=crop",
           "popular": false
         },
         {
@@ -104,7 +104,7 @@
           "name": "Menengiç Kahvesi",
           "description": "Gaziantep'ten özel menengiç",
           "price": "45 ₺",
-          "image": "/images/menu/menengic.jpg",
+          "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&h=300&fit=crop",
           "popular": false
         }
       ]
@@ -119,7 +119,7 @@
           "name": "Iced Latte",
           "description": "Buzlu latte",
           "price": "50 ₺",
-          "image": "/images/menu/iced-latte.jpg",
+          "image": "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=400&h=300&fit=crop",
           "popular": true
         },
         {
@@ -127,7 +127,7 @@
           "name": "Cold Brew",
           "description": "12 saat soğuk demleme",
           "price": "50 ₺",
-          "image": "/images/menu/cold-brew.jpg",
+          "image": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=300&fit=crop",
           "popular": true
         },
         {
@@ -135,7 +135,7 @@
           "name": "Frappe",
           "description": "Buzlu espresso karışımı",
           "price": "45 ₺",
-          "image": "/images/menu/frappe.jpg",
+          "image": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=300&fit=crop",
           "popular": false
         }
       ]
@@ -150,7 +150,7 @@
           "name": "Cheesecake",
           "description": "Krem peynirli tatlı",
           "price": "60 ₺",
-          "image": "/images/menu/cheesecake.jpg",
+          "image": "https://images.unsplash.com/photo-1567327613485-fbc7bf196198?w=400&h=300&fit=crop",
           "popular": true
         },
         {
@@ -158,7 +158,7 @@
           "name": "Tiramisu",
           "description": "İtalyan tatlısı",
           "price": "65 ₺",
-          "image": "/images/menu/tiramisu.jpg",
+          "image": "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&h=300&fit=crop",
           "popular": false
         },
         {
@@ -166,7 +166,7 @@
           "name": "Brownie",
           "description": "Çikolatalı brownie",
           "price": "45 ₺",
-          "image": "/images/menu/brownie.jpg",
+          "image": "https://images.unsplash.com/photo-1564355808539-22fda35bed7e?w=400&h=300&fit=crop",
           "popular": false
         },
         {
@@ -174,7 +174,7 @@
           "name": "Kurabiye",
           "description": "Çeşitli kurabiyeler",
           "price": "30 ₺",
-          "image": "/images/menu/kurabiye.jpg",
+          "image": "https://images.unsplash.com/photo-1558326567-98ae2405596b?w=400&h=300&fit=crop",
           "popular": false
         }
       ]
