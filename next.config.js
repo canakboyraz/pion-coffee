@@ -6,6 +6,15 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
   },
   trailingSlash: true,
+  async redirects() {
+    return [
+      {
+        source: '/menu',
+        destination: '/qr-menu',
+        permanent: false,
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
