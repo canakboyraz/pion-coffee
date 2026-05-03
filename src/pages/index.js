@@ -268,7 +268,7 @@ export default function HomePage() {
             </div>
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=500&fit=crop"
+                src="https://i.ibb.co/dwN72fVx/Kafe-G-rsel.jpg"
                 alt="Pion Coffee mekanı"
                 className="rounded-xl shadow-2xl w-full"
               />
