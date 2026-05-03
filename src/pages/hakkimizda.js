@@ -110,7 +110,7 @@ export default function HakkimizdaPage() {
             </div>
             <div className="relative pb-8 lg:pb-10">
               <img
-                src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=500&fit=crop"
+                src="https://i.ibb.co/dwN72fVx/Kafe-G-rsel.jpg"
                 alt="Pion Coffee iç mekan"
                 className="rounded-xl shadow-xl w-full"
               />
