@@ -5,6 +5,21 @@ import menuData from '../data/menu.json'
 export default function QrMenuPage() {
   const menuUrl = 'https://pioncoffee.com/menu'
 
+  const categoryImages = [
+    {
+      name: 'Sıcak Kahveler',
+      src: 'https://i.ibb.co/NgkVCvHL/S-cak.jpg',
+    },
+    {
+      name: 'Soğuk İçecekler',
+      src: 'https://i.ibb.co/84jP24TD/Soguk.jpg',
+    },
+    {
+      name: 'Maccha',
+      src: 'https://i.ibb.co/FbhLhMtq/Macha.jpg',
+    },
+  ]
+
   // Tüm ürünleri düz liste olarak al
   const allItems = menuData.categories.flatMap(cat => cat.items)
 
@@ -18,7 +33,7 @@ export default function QrMenuPage() {
 
       <section className="min-h-screen bg-cream-50 py-8 px-4">
         {/* Header */}
-        <div className="text-center mb-6">
+        <div className="text-center mb-4">
           <img
             src="https://i.ibb.co/DDngbP1N/P-on-logo-3-01.png"
             alt="Pion Coffee Logo"
@@ -28,6 +43,24 @@ export default function QrMenuPage() {
             Pion Coffee
           </h1>
           <p className="text-coffee-600 text-sm">Self-Servis Kahve • Kartepe</p>
+        </div>
+
+        {/* Kategori Görselleri */}
+        <div className="grid grid-cols-3 gap-2 max-w-lg mx-auto mb-4">
+          {categoryImages.map((cat, index) => (
+            <div key={index} className="relative rounded-lg overflow-hidden">
+              <img
+                src={cat.src}
+                alt={cat.name}
+                className="w-full h-20 object-cover"
+              />
+              <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                <span className="text-white text-xs font-semibold text-center px-1">
+                  {cat.name}
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* QR Code */}
