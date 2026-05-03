@@ -177,34 +177,6 @@ export default function HakkimizdaPage() {
       {/* Gallery Preview */}
       <section className="section-padding bg-cream-50">
         <div className="container-custom">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl lg:text-4xl font-serif font-bold mb-4 text-coffee-900">
-              Mekanımız
-            </h2>
-            <p className="text-coffee-700 max-w-2xl mx-auto">
-              Modern rustik tasarımımızı keşfedin. Her köşede güzellik var.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[
-              'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=400&fit=crop',
-              'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600&h=400&fit=crop',
-              'https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=600&h=400&fit=crop',
-            ].map((src, i) => (
-              <div key={i} className="overflow-hidden rounded-xl shadow-md">
-                <img
-                  src={src}
-                  alt={`Pion Coffee mekan ${i + 1}`}
-                  className="w-full h-64 object-cover hover:scale-110 transition-transform duration-500"
-                />
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-8">
-            <Link href="/galeri" className="btn-primary">
-              Tüm Galeriyi Gör
-            </Link>
-          </div>
         </div>
       </section>
 
