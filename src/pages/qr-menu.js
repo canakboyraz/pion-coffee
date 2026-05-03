@@ -19,6 +19,10 @@ export default function QrMenuPage() {
       name: 'Maccha',
       src: 'https://i.ibb.co/FbhLhMtq/Macha.jpg',
     },
+    {
+      name: 'Yiyecek & İçecek',
+      src: 'https://i.ibb.co/SXJ1xzkr/yiyecek-icecek.jpg',
+    },
   ]
 
   const allItems = menuData.categories.flatMap(cat => cat.items)
