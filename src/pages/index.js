@@ -63,6 +63,11 @@ function Hero() {
   const ref = useRef(null)
   const [p, setP] = useState({ x: 0, y: 0 })
   const scrollY = useScrollY()
+  const videoRef = useRef(null)
+
+  useEffect(() => {
+    if (videoRef.current && window.matchMedia('(prefers-reduced-motion: reduce)').matches) videoRef.current.pause()
+  }, [])
 
   useEffect(() => {
     const el = ref.current
@@ -93,13 +98,6 @@ function Hero() {
 
   return (
     <section ref={ref} className="grain relative flex min-h-[100svh] items-center overflow-hidden bg-ink-900 text-white">
-      {site.heroVideo && (
-        <div className="absolute inset-0" aria-hidden="true">
-          <video className="hero-video h-full w-full object-cover" src={site.heroVideo} poster={site.cafePhoto} autoPlay muted loop playsInline />
-          <div className="absolute inset-0 bg-gradient-to-r from-ink-900 via-ink-900/70 to-ink-900/20" />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-transparent to-ink-900/40" />
-        </div>
-      )}
       {/* Arka plan ışıkları */}
       <div className="orb -left-32 top-1/4 h-[28rem] w-[28rem] bg-ink-400/50" aria-hidden="true" />
       <div className="orb -right-20 bottom-0 h-[30rem] w-[30rem] bg-caramel-500/35" style={{ animationDelay: '-8s' }} aria-hidden="true" />
@@ -120,8 +118,8 @@ function Hero() {
         </div>
       ))}
 
-      <div className="container-custom relative grid items-center gap-14 pb-20 pt-32 lg:grid-cols-12 lg:gap-8 lg:pt-28">
-        <div className="lg:col-span-7">
+      <div className={`container-custom relative grid items-center gap-14 pb-20 pt-32 lg:grid-cols-12 lg:gap-8 lg:pt-28 ${site.heroVideo ? 'lg:static' : ''}`}>
+        <div className="relative z-10 lg:col-span-7">
           <Reveal>
             <span className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white/80 backdrop-blur">
               <OpenStatus />
@@ -148,6 +146,36 @@ function Hero() {
             </a>
           </Reveal>
         </div>
+
+        {/* Gerçek video: mobilde metnin altında kart, masaüstünde fincan sağda kalacak şekilde tam ekran arka plan */}
+        {site.heroVideo && (
+          <div className="relative lg:static lg:col-span-5">
+            <div className="animate-fade-in">
+              <div className="relative aspect-video overflow-hidden rounded-4xl ring-1 ring-white/10 lg:absolute lg:inset-y-0 lg:left-[11%] lg:aspect-auto lg:w-[115%] lg:rounded-none lg:ring-0" aria-hidden="true">
+                <video
+                  ref={videoRef}
+                  className="hero-video h-full w-full object-cover"
+                  src={site.heroVideo}
+                  poster={site.heroPoster}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                />
+                <div className="absolute inset-0 hidden bg-gradient-to-r from-ink-900 from-[12%] via-ink-900/55 via-[40%] to-transparent lg:block" />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink-900/80 via-transparent to-ink-900/30" />
+              </div>
+            </div>
+            <div className="absolute -right-3 -top-10 z-10 lg:bottom-24 lg:right-10 lg:top-auto" style={par(-20)}>
+              <Reveal variant="zoom" delay={900}>
+                <Link href="/qr-menu" aria-label="Menüye git">
+                  <RotatingBadge />
+                </Link>
+              </Reveal>
+            </div>
+          </div>
+        )}
 
         {/* Görsel kompozisyon */}
         {!site.heroVideo && (
