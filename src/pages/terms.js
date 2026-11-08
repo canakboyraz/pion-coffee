@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import PageHero from '../components/PageHero'
 
 export default function TermsPage() {
   return (
@@ -13,20 +14,11 @@ export default function TermsPage() {
         <link rel="canonical" href="https://pioncoffee.com/terms" />
       </Head>
 
-      <section className="bg-primary-500 text-white py-16">
-        <div className="container-custom">
-          <h1 className="text-4xl lg:text-5xl font-serif font-bold mb-4">
-            Kullanım Şartları
-          </h1>
-          <p className="text-cream-200">
-            Son güncelleme: {new Date().toLocaleDateString('tr-TR')}
-          </p>
-        </div>
-      </section>
+      <PageHero compact eyebrow="Yasal" title="Kullanım" accent="Şartları" />
 
-      <section className="section-padding bg-cream-50">
+      <section className="py-16 lg:py-24">
         <div className="container-custom max-w-4xl">
-          <div className="bg-white rounded-xl p-8 lg:p-12 shadow-md space-y-6">
+          <div className="bg-white rounded-4xl p-8 lg:p-12 shadow-[0_30px_60px_-40px_rgba(15,27,45,.5)] space-y-6">
             <div>
               <h2 className="text-2xl font-serif font-bold mb-3 text-coffee-900">1. Kabul</h2>
               <p className="text-coffee-700 leading-relaxed">

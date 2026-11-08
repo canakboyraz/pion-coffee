@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import PageHero from '../components/PageHero'
 
 export default function PrivacyPage() {
   return (
@@ -13,18 +14,9 @@ export default function PrivacyPage() {
         <link rel="canonical" href="https://pioncoffee.com/privacy" />
       </Head>
 
-      <section className="bg-primary-500 text-white py-16">
-        <div className="container-custom">
-          <h1 className="text-4xl lg:text-5xl font-serif font-bold mb-4">
-            Gizlilik Politikası
-          </h1>
-          <p className="text-cream-200">
-            Son güncelleme: {new Date().toLocaleDateString('tr-TR')}
-          </p>
-        </div>
-      </section>
+      <PageHero compact eyebrow="Yasal" title="Gizlilik" accent="Politikası" />
 
-      <section className="section-padding bg-cream-50">
+      <section className="py-16 lg:py-24">
         <div className="container-custom max-w-4xl">
           <div className="bg-white rounded-xl p-8 lg:p-12 shadow-md">
             <h2 className="text-2xl font-serif font-bold mb-4 text-coffee-900">1. Giriş</h2>

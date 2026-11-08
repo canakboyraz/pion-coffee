@@ -1,144 +1,97 @@
-import Head from 'next/head'
 import { useState } from 'react'
+import Head from 'next/head'
+import { site, menuBoards } from '../data/site'
+import PageHero from '../components/PageHero'
+import Lightbox from '../components/Lightbox'
+import { Reveal } from '../components/motion'
+import { Expand, Instagram } from '../components/Icons'
 
+// Kendi fotoğraflarınızı eklemek için: dosyayı /public/images/galeri/ içine koyup src: '/images/galeri/dosya.jpg' yazın.
 const galleryItems = [
-  {
-    id: 1,
-    src: 'https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=800&h=600&fit=crop',
-    alt: 'Espresso hazırlama',
-    category: 'kahve',
-  },
-  {
-    id: 2,
-    src: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=800&h=600&fit=crop',
-    alt: 'Cappuccino',
-    category: 'kahve',
-  },
-  {
-    id: 3,
-    src: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=800&h=600&fit=crop',
-    alt: 'Latte art',
-    category: 'kahve',
-  },
-  {
-    id: 4,
-    src: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=800&h=600&fit=crop',
-    alt: 'Türk kahvesi',
-    category: 'kahve',
-  },
-  {
-    id: 5,
-    src: 'https://images.unsplash.com/photo-1507914997854-6b74c4e0a58f?w=800&h=600&fit=crop',
-    alt: 'Pastane ürünleri',
-    category: 'yiyecek',
-  },
+  { src: site.cafePhoto, alt: 'Pion Coffee mekân', category: 'mekan', tall: true },
+  { src: 'https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=900&h=700&fit=crop', alt: 'Espresso hazırlama', category: 'kahve' },
+  { src: menuBoards[0].src, alt: 'Sıcak kahveler panosu', category: 'menu', tall: true },
+  { src: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=900&h=700&fit=crop', alt: 'Cappuccino', category: 'kahve' },
+  { src: menuBoards[1].src, alt: 'Soğuk içecekler panosu', category: 'menu', tall: true },
+  { src: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=900&h=700&fit=crop', alt: 'Latte art', category: 'kahve' },
+  { src: menuBoards[2].src, alt: 'Matcha panosu', category: 'menu', tall: true },
+  { src: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=900&h=700&fit=crop', alt: 'Türk kahvesi', category: 'kahve' },
+  { src: menuBoards[3].src, alt: 'Yiyecek & içecek panosu', category: 'menu', tall: true },
+  { src: 'https://images.unsplash.com/photo-1507914997854-6b74c4e0a58f?w=900&h=700&fit=crop', alt: 'Tatlılar', category: 'kahve' },
 ]
 
-const categories = [
+const filters = [
   { id: 'hepsi', label: 'Hepsi' },
-  { id: 'kahve', label: 'Kahvelerimiz' },
-  { id: 'yiyecek', label: 'Yiyecekler' },
+  { id: 'mekan', label: 'Mekân' },
+  { id: 'kahve', label: 'Kahveler' },
+  { id: 'menu', label: 'Menü panoları' },
 ]
 
 export default function GaleriPage() {
-  const [activeCategory, setActiveCategory] = useState('hepsi')
-  const [selectedImage, setSelectedImage] = useState(null)
-
-  const filteredItems =
-    activeCategory === 'hepsi'
-      ? galleryItems
-      : galleryItems.filter((item) => item.category === activeCategory)
+  const [filter, setFilter] = useState('hepsi')
+  const [index, setIndex] = useState(null)
+  const items = filter === 'hepsi' ? galleryItems : galleryItems.filter((g) => g.category === filter)
 
   return (
     <>
       <Head>
         <title>Galeri | Pion Coffee</title>
-        <meta
-          name="description"
-          content="Pion Coffee galeri. Modern self-servis kahve dükkanımızın iç mekan ve kahve fotoğrafları."
-        />
-        <link rel="canonical" href="https://pioncoffee.com/galeri" />
+        <meta name="description" content="Pion Coffee galeri: mekânımızdan, kahvelerimizden ve menü panolarımızdan kareler." />
+        <link rel="canonical" href={`${site.url}/galeri/`} />
       </Head>
 
-      {/* Hero */}
-      <section className="bg-primary-500 text-white py-12 lg:py-16">
-        <div className="container-custom">
-          <h1 className="text-4xl lg:text-5xl font-serif font-bold mb-4">
-            Galeri
-          </h1>
-          <p className="text-cream-100 text-lg max-w-2xl">
-            Mekânımızdan ve kahvelerimizden kareler. Pion Coffee&apos;nin havasını 
-            fotoğraflarla hissedin.
-          </p>
-        </div>
-      </section>
+      <PageHero compact eyebrow="Galeri" title="Pion'dan" accent="kareler" description="Mekânımızın havasını, fincanlarımızı ve tezgâhımızı fotoğraflarla hissedin." />
 
-      {/* Gallery */}
-      <section className="section-padding bg-cream-50">
+      <section className="pb-24 pt-12 lg:pb-32">
         <div className="container-custom">
-          {/* Filters */}
-          <div className="flex flex-wrap gap-3 mb-10 justify-center">
-            {categories.map((cat) => (
+          <div className="mb-10 flex flex-wrap justify-center gap-2">
+            {filters.map((f) => (
               <button
-                key={cat.id}
-                onClick={() => setActiveCategory(cat.id)}
-                className={`px-5 py-2 rounded-full font-medium transition-all duration-300 ${
-                  activeCategory === cat.id
-                    ? 'bg-primary-500 text-white shadow-md'
-                    : 'bg-white text-coffee-900 border-2 border-coffee-200 hover:border-primary-500'
+                key={f.id}
+                type="button"
+                onClick={() => setFilter(f.id)}
+                className={`rounded-full px-5 py-2.5 text-sm font-bold transition-all duration-300 ${
+                  filter === f.id ? 'bg-ink-900 text-white shadow-lg' : 'bg-white text-ink-600 hover:-translate-y-0.5 hover:bg-ink-100'
                 }`}
               >
-                {cat.label}
+                {f.label}
               </button>
             ))}
           </div>
 
-          {/* Grid */}
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
-            {filteredItems.map((item) => (
-              <div
-                key={item.id}
-                className="break-inside-avoid overflow-hidden rounded-xl shadow-md cursor-pointer group"
-                onClick={() => setSelectedImage(item)}
+          <div key={filter} className="columns-1 gap-5 sm:columns-2 lg:columns-3">
+            {items.map((g, i) => (
+              <button
+                key={g.src}
+                type="button"
+                onClick={() => setIndex(i)}
+                className="pop-in group relative mb-5 block w-full break-inside-avoid overflow-hidden rounded-4xl text-left"
+                style={{ '--delay': `${i * 60}ms` }}
               >
                 <img
-                  src={item.src}
-                  alt={item.alt}
-                  className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  src={g.src}
+                  alt={g.alt}
+                  loading="lazy"
+                  className={`w-full object-cover transition duration-700 group-hover:scale-105 ${g.tall ? 'aspect-[3/4]' : 'aspect-[4/3]'}`}
                 />
-              </div>
+                <span className="absolute inset-0 bg-gradient-to-t from-ink-900/80 via-transparent to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
+                <span className="absolute inset-x-0 bottom-0 flex translate-y-4 items-center justify-between p-5 text-white opacity-0 transition duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                  <span className="font-serif text-xl">{g.alt}</span>
+                  <Expand className="h-5 w-5" />
+                </span>
+              </button>
             ))}
           </div>
+
+          <Reveal className="mt-14 text-center">
+            <a href={site.instagram} target="_blank" rel="noopener noreferrer" className="btn btn-ink">
+              <Instagram className="h-4 w-4" /> Daha fazlası Instagram&apos;da
+            </a>
+          </Reveal>
         </div>
       </section>
 
-      {/* Lightbox */}
-      {selectedImage && (
-        <div
-          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
-          onClick={() => setSelectedImage(null)}
-        >
-          <div
-            className="relative max-w-4xl w-full"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="absolute -top-12 right-0 text-white hover:text-primary-300 text-2xl font-bold"
-              onClick={() => setSelectedImage(null)}
-            >
-              ✕ Kapat
-            </button>
-            <img
-              src={selectedImage.src}
-              alt={selectedImage.alt}
-              className="w-full rounded-xl shadow-2xl"
-            />
-            <p className="text-white text-center mt-4 text-lg">
-              {selectedImage.alt}
-            </p>
-          </div>
-        </div>
-      )}
+      <Lightbox items={items} index={index} onClose={() => setIndex(null)} onChange={setIndex} />
     </>
   )
 }

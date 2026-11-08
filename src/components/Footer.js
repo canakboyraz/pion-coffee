@@ -1,134 +1,100 @@
 import Link from 'next/link'
-
-const socialLinks = [
-  {
-    name: 'Instagram',
-    href: 'https://instagram.com/pioncoffee',
-    icon: (
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.416 2.427.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06-1.407-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882.3-1.857.344-1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.35.663.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748 1.15-.35.35.566.683.566 1.15.748.353.137.353-.3.882.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Facebook',
-    href: 'https://facebook.com/pioncoffee',
-    icon: (
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Google Maps',
-    href: 'https://maps.app.goo.gl/CD9CRd66SH4kEc626?g_st=iw',
-    icon: (
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-      </svg>
-    ),
-  },
-]
-
-const footerLinks = {
-  site: [
-    { href: '/', label: 'Ana Sayfa' },
-    { href: '/qr-menu', label: 'Menü' },
-    { href: '/hakkimizda', label: 'Hakkımızda' },
-    { href: '/galeri', label: 'Galeri' },
-    { href: '/iletisim', label: 'İletişim' },
-  ],
-  legal: [
-    { href: '/privacy', label: 'Gizlilik Politikası' },
-    { href: '/terms', label: 'Kullanım Şartları' },
-  ],
-}
+import { site, navLinks } from '../data/site'
+import { Instagram, Facebook, MapPin, WhatsApp, Mail, Clock, ArrowUpRight } from './Icons'
+import { Reveal } from './motion'
 
 export default function Footer() {
   return (
-    <footer className="bg-primary-600 text-cream-100">
-      {/* Main Footer */}
-      <div className="container-custom py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          {/* Brand Section */}
-          <div className="lg:col-span-2">
-            <Link href="/" className="inline-flex items-center gap-3 mb-4">
-              <img
-                src="https://i.ibb.co/DDngbP1N/P-on-logo-3-01.png"
-                alt="Pion Coffee Logo"
-                className="w-12 h-12 rounded-full object-cover"
-              />
-              <div>
-                <span className="text-white font-serif text-2xl font-semibold tracking-wide">
-                  Pion Coffee
-                </span>
-                <span className="block text-primary-200 text-sm font-sans tracking-widest uppercase">
-                  Kocaeli / Kartepe
-                </span>
-              </div>
+    <footer className="grain relative overflow-hidden bg-ink-950 text-white">
+      <div className="orb -left-40 top-10 h-96 w-96 bg-caramel-500/30" aria-hidden="true" />
+
+      <div className="container-custom relative pt-20 lg:pt-28">
+        <Reveal className="flex flex-col items-start justify-between gap-8 border-b border-white/10 pb-14 lg:flex-row lg:items-end">
+          <h2 className="display max-w-2xl text-5xl text-white sm:text-6xl lg:text-7xl">
+            Bir fincan <span className="italic-accent">mola</span> her zaman iyi fikir.
+          </h2>
+          <div className="flex flex-wrap gap-3">
+            <a href={site.mapsLink} target="_blank" rel="noopener noreferrer" className="btn btn-caramel">
+              Yol tarifi al <ArrowUpRight className="btn-arrow h-4 w-4" />
+            </a>
+            <Link href="/qr-menu" className="btn btn-ghost-light">
+              Menüye bak
             </Link>
-            <p className="text-cream-200 mb-6 max-w-md leading-relaxed">
-              Modern self-servis konseptiyle, en kaliteli kahve deneyimini sizlere sunuyoruz. 
-              Her fincan da özenle hazırlanır, her ziyaretçi özel hisseder.
+          </div>
+        </Reveal>
+
+        <div className="grid gap-12 py-14 sm:grid-cols-2 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <div className="flex items-center gap-3">
+              <img src={site.logo} alt="Pion Coffee logo" className="h-12 w-12 rounded-full object-cover ring-2 ring-white/10" />
+              <div>
+                <p className="font-serif text-2xl font-semibold">Pion Coffee</p>
+                <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-caramel-300">{site.location}</p>
+              </div>
+            </div>
+            <p className="mt-6 max-w-sm leading-relaxed text-white/60">
+              Modern self-servis konsepti, özenle hazırlanan kahveler ve sakin bir köşe. Kartepe&apos;de günün her saatine bir fincan.
             </p>
-            <div className="flex gap-4">
-              {socialLinks.map((social) => (
+            <div className="mt-6 flex gap-3">
+              {[
+                { href: site.instagram, label: 'Instagram', Icon: Instagram },
+                { href: site.facebook, label: 'Facebook', Icon: Facebook },
+                { href: site.whatsapp, label: 'WhatsApp', Icon: WhatsApp },
+                { href: site.mapsLink, label: 'Google Maps', Icon: MapPin },
+              ].map(({ href, label, Icon }) => (
                 <a
-                  key={social.name}
-                  href={social.href}
+                  key={label}
+                  href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-primary-700 hover:bg-primary-500 hover:text-white flex items-center justify-center transition-all duration-300"
-                  aria-label={social.name}
+                  aria-label={label}
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/80 transition duration-300 hover:-translate-y-1 hover:border-caramel-400 hover:bg-caramel-500 hover:text-white"
                 >
-                  {social.icon}
+                  <Icon className="h-5 w-5" />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-white font-semibold mb-4 text-lg">Site Haritası</h3>
-            <ul className="space-y-2">
-              {footerLinks.site.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-cream-200 hover:text-primary-300 transition-colors duration-200"
-                  >
-                    {link.label}
+          <div className="lg:col-span-3">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-white/40">Sayfalar</p>
+            <ul className="mt-5 space-y-3">
+              {navLinks.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="group inline-flex items-center gap-2 text-white/75 transition hover:text-white">
+                    <span className="h-px w-0 bg-caramel-400 transition-all duration-300 group-hover:w-4" />
+                    {l.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-white font-semibold mb-4 text-lg">İletişim</h3>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-3">
-                <svg className="w-5 h-5 text-primary-200 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <span className="text-cream-200">Hemşire Sokak No: 9, Dumlupınar Mahallesi, Kartepe, Kocaeli</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <svg className="w-5 h-5 text-primary-300 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-                <a href="tel:05074998785" className="text-cream-200 hover:text-primary-300 transition-colors duration-200">
-                  0507 499 87 85
+          <div className="lg:col-span-4">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-white/40">Ziyaret</p>
+            <ul className="mt-5 space-y-4 text-white/75">
+              <li className="flex gap-3">
+                <MapPin className="mt-0.5 h-5 w-5 flex-shrink-0 text-caramel-300" />
+                <a href={site.mapsLink} target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                  {site.address}
                 </a>
               </li>
-              <li className="flex items-center gap-3">
-                <svg className="w-5 h-5 text-primary-300 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <a href="mailto:info@pioncoffee.com" className="text-cream-200 hover:text-primary-200 transition-colors duration-200">
-                  info@pioncoffee.com
+              <li className="flex gap-3">
+                <Clock className="mt-0.5 h-5 w-5 flex-shrink-0 text-caramel-300" />
+                <span>
+                  {site.hours.label} {site.hours.opens} – {site.hours.closes}
+                </span>
+              </li>
+              <li className="flex gap-3">
+                <WhatsApp className="mt-0.5 h-5 w-5 flex-shrink-0 text-caramel-300" />
+                <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                  {site.phoneDisplay}
+                </a>
+              </li>
+              <li className="flex gap-3">
+                <Mail className="mt-0.5 h-5 w-5 flex-shrink-0 text-caramel-300" />
+                <a href={`mailto:${site.email}`} className="hover:text-white">
+                  {site.email}
                 </a>
               </li>
             </ul>
@@ -136,24 +102,22 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom Footer */}
-      <div className="border-t border-primary-400">
-        <div className="container-custom py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-cream-300 text-sm">
-              © {new Date().getFullYear()} Pion Coffee. Tüm hakları saklıdır.
-            </p>
-            <div className="flex gap-6">
-              {footerLinks.legal.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-cream-300 hover:text-primary-200 text-sm transition-colors duration-200"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
+      {/* Dev logo yazısı */}
+      <div className="pointer-events-none relative select-none overflow-hidden" aria-hidden="true">
+        <p
+          className="display translate-y-[18%] whitespace-nowrap text-center text-[17vw] leading-none text-transparent"
+          style={{ WebkitTextStroke: '1px rgba(223,171,114,.28)' }}
+        >
+          pion coffee
+        </p>
+      </div>
+
+      <div className="relative border-t border-white/10">
+        <div className="container-custom flex flex-col items-center justify-between gap-3 py-6 text-sm text-white/45 sm:flex-row">
+          <p>© {new Date().getFullYear()} Pion Coffee. Tüm hakları saklıdır.</p>
+          <div className="flex gap-6">
+            <Link href="/privacy" className="hover:text-white">Gizlilik Politikası</Link>
+            <Link href="/terms" className="hover:text-white">Kullanım Şartları</Link>
           </div>
         </div>
       </div>
