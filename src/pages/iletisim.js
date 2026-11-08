@@ -1,11 +1,36 @@
-import Head from 'next/head'
 import { useState } from 'react'
+import Head from 'next/head'
 import { useForm } from 'react-hook-form'
+import { site } from '../data/site'
+import PageHero from '../components/PageHero'
+import OpenStatus from '../components/OpenStatus'
+import { Reveal, trackSpotlight } from '../components/motion'
+import { MapPin, WhatsApp, Mail, Clock, ArrowUpRight, Send } from '../components/Icons'
+
+const cards = [
+  { Icon: MapPin, label: 'Adres', value: site.address, href: site.mapsLink, external: true },
+  { Icon: WhatsApp, label: 'WhatsApp', value: site.phoneDisplay, href: site.whatsapp, external: true },
+  { Icon: Mail, label: 'E-posta', value: site.email, href: `mailto:${site.email}` },
+  { Icon: Clock, label: 'Çalışma saatleri', value: `${site.hours.label} ${site.hours.opens} – ${site.hours.closes}`, status: true },
+]
+
+function Field({ label, error, children }) {
+  return (
+    <label className="block">
+      <span className="mb-2 block text-sm font-bold text-ink-700">{label}</span>
+      {children}
+      {error && <span className="mt-1.5 block text-sm text-rose-500">{error}</span>}
+    </label>
+  )
+}
+
+const inputCls = (err) =>
+  `w-full rounded-2xl border bg-foam/60 px-4 py-3.5 text-ink-900 outline-none transition placeholder:text-ink-300 focus:bg-white focus:ring-4 ${
+    err ? 'border-rose-300 focus:border-rose-400 focus:ring-rose-100' : 'border-ink-900/10 focus:border-caramel-400 focus:ring-caramel-100'
+  }`
 
 export default function IletisimPage() {
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-
+  const [sent, setSent] = useState(false)
   const {
     register,
     handleSubmit,
@@ -13,12 +38,11 @@ export default function IletisimPage() {
     formState: { errors },
   } = useForm()
 
-  const onSubmit = async (data) => {
-    setIsLoading(true)
-    console.log('Form data:', data)
-    await new Promise((r) => setTimeout(r, 1500))
-    setIsLoading(false)
-    setIsSubmitted(true)
+  // Form bir sunucuya bağlı değil: mesaj WhatsApp'ta hazır metin olarak açılır.
+  const onSubmit = (data) => {
+    const text = [`Merhaba Pion Coffee, ben ${data.name}.`, data.message, data.phone ? `Telefon: ${data.phone}` : ''].filter(Boolean).join('\n\n')
+    window.open(`https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer')
+    setSent(true)
     reset()
   }
 
@@ -26,255 +50,115 @@ export default function IletisimPage() {
     <>
       <Head>
         <title>İletişim | Pion Coffee</title>
-        <meta
-          name="description"
-          content="Pion Coffee iletişim bilgileri. Kocaeli/Kartepe'deki kahve dükkanımıza ulaşın. WhatsApp, adres, çalışma saatleri."
-        />
-        <meta name="keywords" content="Pion Coffee iletişim, kahve dükkanı adres, Kartepe iletişim" />
-        <link rel="canonical" href="https://pioncoffee.com/iletisim" />
+        <meta name="description" content="Pion Coffee iletişim: Kartepe/Kocaeli adresimiz, WhatsApp hattımız, çalışma saatlerimiz ve yol tarifi." />
+        <link rel="canonical" href={`${site.url}/iletisim/`} />
       </Head>
 
-      {/* Hero Section */}
-      <section className="bg-primary-500 text-white py-12 lg:py-16">
-        <div className="container-custom">
-          <h1 className="text-4xl lg:text-5xl font-serif font-bold mb-4">
-            İletişim
-          </h1>
-          <p className="text-cream-100 text-lg max-w-2xl">
-            Bize ulaşın, sorularınızı yanıtlayalım. Sizi mekânımıza bekliyoruz.
-          </p>
+      <PageHero compact eyebrow="İletişim" title="Bir kahve" accent="uzağındayız." description="Sorunuz, öneriniz ya da toplu siparişiniz mi var? Yazın, hemen dönelim.">
+        <Reveal delay={600} className="mt-8">
+          <span className="inline-flex rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white/80">
+            <OpenStatus />
+          </span>
+        </Reveal>
+      </PageHero>
+
+      <section className="relative -mt-10 pb-10">
+        <div className="container-custom grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {cards.map(({ Icon, label, value, href, external, status }, i) => {
+            const inner = (
+              <>
+                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-ink-900 text-caramel-300 transition duration-500 group-hover:-rotate-12 group-hover:bg-caramel-500 group-hover:text-white">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <span className="mt-6 block text-xs font-bold uppercase tracking-[0.18em] text-ink-300">{label}</span>
+                <span className="mt-1 block font-semibold leading-snug text-ink-900">{value}</span>
+                {status && <OpenStatus className="mt-3 text-sm text-ink-500" />}
+                {href && <ArrowUpRight className="absolute right-6 top-6 h-5 w-5 text-ink-300 transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-caramel-500" />}
+              </>
+            )
+            const cls = 'spotlight card-hover group relative block h-full rounded-4xl bg-white p-6 shadow-[0_20px_50px_-35px_rgba(15,27,45,.6)]'
+            return (
+              <Reveal key={label} delay={i * 90}>
+                {href ? (
+                  <a href={href} onMouseMove={trackSpotlight} className={cls} {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
+                    {inner}
+                  </a>
+                ) : (
+                  <div onMouseMove={trackSpotlight} className={cls}>
+                    {inner}
+                  </div>
+                )}
+              </Reveal>
+            )
+          })}
         </div>
       </section>
 
-      {/* Main Content */}
-      <section className="section-padding bg-cream-50">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Info */}
-            <div>
-              <h2 className="text-3xl font-serif font-bold mb-8 text-coffee-900">
-                Bize Ulaşın
-              </h2>
-
-              {/* Contact Cards */}
-              <div className="space-y-4 mb-10">
-                <div className="bg-white rounded-xl p-5 shadow-md flex items-start gap-4">
-                  <div className="text-primary-500 flex-shrink-0 mt-1">
-                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-coffee-700 text-sm font-medium mb-1">Adres</p>
-                    <p className="text-coffee-900 font-semibold">
-                      Hemşire Sokak No: 9, Dumlupınar Mahallesi, Kartepe, Kocaeli
-                    </p>
-                  </div>
-                </div>
-
-                <div className="bg-white rounded-xl p-5 shadow-md flex items-start gap-4">
-                  <div className="text-primary-500 flex-shrink-0 mt-1">
-                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-coffee-700 text-sm font-medium mb-1">WhatsApp</p>
-                    <a
-                      href="https://wa.me/905074998785"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-coffee-900 font-semibold hover:text-primary-500 transition-colors duration-200"
-                    >
-                      0507 499 87 85
-                    </a>
-                  </div>
-                </div>
-
-                <div className="bg-white rounded-xl p-5 shadow-md flex items-start gap-4">
-                  <div className="text-primary-500 flex-shrink-0 mt-1">
-                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-coffee-700 text-sm font-medium mb-1">E-posta</p>
-                    <a
-                      href="mailto:info@pioncoffee.com"
-                      className="text-coffee-900 font-semibold hover:text-primary-500 transition-colors duration-200"
-                    >
-                      info@pioncoffee.com
-                    </a>
-                  </div>
-                </div>
-
-                <div className="bg-white rounded-xl p-5 shadow-md flex items-start gap-4">
-                  <div className="text-primary-500 flex-shrink-0 mt-1">
-                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-coffee-700 text-sm font-medium mb-1">Çalışma Saatleri</p>
-                    <p className="text-coffee-900 font-semibold">Her gün 07:00 – 22:00</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Google Maps */}
-              <div className="rounded-xl overflow-hidden shadow-md">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3847.2072!2d30.0267!3d40.7611!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sPion%20Coffee!5e0!3m2!1str!2str!4f0!5f0!5f0!5m2!1e1!1u!1e1!1e3!3m1!1e1"
-                  width="100%"
-                  height="250"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Pion Coffee Konum"
-                />
-              </div>
-
-              <a
-                href="https://maps.app.goo.gl/CD9CRd66SH4kEc626?g_st=iw"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-coffee mt-4 inline-flex items-center gap-2"
-              >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                Yol Tarifi Al
+      <section className="pb-24 pt-10 lg:pb-32">
+        <div className="container-custom grid gap-8 lg:grid-cols-2">
+          <Reveal variant="left">
+            <div className="relative h-full min-h-[420px] overflow-hidden rounded-5xl bg-ink-100">
+              <iframe
+                src={site.mapsEmbed}
+                className="absolute inset-0 h-full w-full grayscale-[50%]"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Pion Coffee konum"
+              />
+              <a href={site.mapsLink} target="_blank" rel="noopener noreferrer" className="btn btn-caramel absolute bottom-5 left-5">
+                <MapPin className="h-4 w-4" /> Yol tarifi al
               </a>
             </div>
+          </Reveal>
 
-            {/* Contact Form */}
-            <div>
-              <h2 className="text-3xl font-serif font-bold mb-8 text-coffee-900">
-                Mesaj Gönderin
+          <Reveal variant="right">
+            <div className="rounded-5xl bg-white p-8 shadow-[0_30px_60px_-40px_rgba(15,27,45,.6)] sm:p-10">
+              <h2 className="display text-4xl text-ink-900 sm:text-5xl">
+                Mesaj <span className="italic text-caramel-500">gönderin</span>
               </h2>
+              <p className="mt-3 text-ink-500">Mesajınız WhatsApp&apos;ta hazır olarak açılır, tek dokunuşla gönderirsiniz.</p>
 
-              {isSubmitted ? (
-                <div className="bg-green-50 border border-green-200 rounded-xl p-8 text-center">
-                  <div className="text-green-500 text-5xl mb-4">✓</div>
-                  <h3 className="text-2xl font-semibold text-coffee-900 mb-2">
-                    Teşekkürler!
-                  </h3>
-                  <p className="text-coffee-700">
-                    Mesajınız başarıyla iletildi. En kısa sürede size dönüş yapacağız.
-                  </p>
-                  <button
-                    onClick={() => setIsSubmitted(false)}
-                    className="mt-6 btn-primary"
-                  >
-                    Yeni Mesaj Gönder
+              {sent ? (
+                <div className="pop-in mt-10 rounded-4xl bg-emerald-50 p-8 text-center">
+                  <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500 text-white">
+                    <Send className="h-7 w-7" />
+                  </span>
+                  <h3 className="mt-5 font-serif text-2xl font-semibold text-ink-900">WhatsApp açıldı</h3>
+                  <p className="mt-2 text-ink-500">Mesajınızı orada göndermeyi unutmayın. Teşekkürler!</p>
+                  <button type="button" onClick={() => setSent(false)} className="btn btn-ghost-dark mt-6">
+                    Yeni mesaj
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-                  {/* Ad Soyad */}
-                  <div>
-                    <label className="block text-coffee-900 font-medium mb-1.5">
-                      Ad Soyad *
-                    </label>
-                    <input
-                      {...register('name', { required: 'Ad soyad gereklidir' })}
-                      type="text"
-                      placeholder="Adınız ve soyadınız"
-                      className={`w-full px-4 py-3 rounded-lg border-2 outline-none transition-colors bg-white ${
-                        errors.name
-                          ? 'border-red-300 focus:border-red-500'
-                          : 'border-coffee-200 focus:border-primary-500'
-                      }`}
-                    />
-                    {errors.name && (
-                      <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
-                    )}
+                <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-5" noValidate>
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    <Field label="Ad Soyad *" error={errors.name?.message}>
+                      <input {...register('name', { required: 'Ad soyad gereklidir' })} placeholder="Adınız" className={inputCls(errors.name)} />
+                    </Field>
+                    <Field label="Telefon">
+                      <input {...register('phone')} type="tel" placeholder="05XX XXX XX XX" className={inputCls()} />
+                    </Field>
                   </div>
-
-                  {/* E-posta */}
-                  <div>
-                    <label className="block text-coffee-900 font-medium mb-1.5">
-                      E-posta *
-                    </label>
-                    <input
-                      {...register('email', {
-                        required: 'E-posta gereklidir',
-                        pattern: {
-                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                          message: 'Geçerli bir e-posta girin',
-                        },
-                      })}
-                      type="email"
-                      placeholder="ornek@email.com"
-                      className={`w-full px-4 py-3 rounded-lg border-2 outline-none transition-colors bg-white ${
-                        errors.email
-                          ? 'border-red-300 focus:border-red-500'
-                          : 'border-coffee-200 focus:border-primary-500'
-                      }`}
-                    />
-                    {errors.email && (
-                      <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
-                    )}
-                  </div>
-
-                  {/* Telefon */}
-                  <div>
-                    <label className="block text-coffee-900 font-medium mb-1.5">
-                      Telefon
-                    </label>
-                    <input
-                      {...register('phone')}
-                      type="tel"
-                      placeholder="+90 5XX XXX XX XX"
-                      className="w-full px-4 py-3 rounded-lg border-2 border-coffee-200 focus:border-primary-500 outline-none transition-colors bg-white"
-                    />
-                  </div>
-
-                  {/* Mesaj */}
-                  <div>
-                    <label className="block text-coffee-900 font-medium mb-1.5">
-                      Mesaj *
-                    </label>
+                  <Field label="Mesaj *" error={errors.message?.message}>
                     <textarea
-                      {...register('message', { required: 'Mesaj gereklidir', minLength: { value: 10, message: 'Mesaj en az 10 karakter olmalı' } })}
+                      {...register('message', {
+                        required: 'Mesaj gereklidir',
+                        minLength: { value: 10, message: 'Mesaj en az 10 karakter olmalı' },
+                      })}
                       rows={5}
-                      placeholder="Mesajınızı yazınız..."
-                      className={`w-full px-4 py-3 rounded-lg border-2 outline-none transition-colors bg-white resize-none ${
-                        errors.message
-                          ? 'border-red-300 focus:border-red-500'
-                          : 'border-coffee-200 focus:border-primary-500'
-                      }`}
+                      placeholder="Mesajınız…"
+                      className={`${inputCls(errors.message)} resize-none`}
                     />
-                    {errors.message && (
-                      <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>
-                    )}
-                  </div>
-
-                  {/* Submit */}
-                  <button
-                    type="submit"
-                    disabled={isLoading}
-                    className="btn-coffee w-full py-4 text-lg disabled:opacity-70 disabled:cursor-not-allowed"
-                  >
-                    {isLoading ? (
-                      <span className="inline-flex items-center gap-2">
-                        <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                        </svg>
-                        Gönderiliyor...
-                      </span>
-                    ) : (
-                      'Mesajı Gönder'
-                    )}
+                  </Field>
+                  <button type="submit" className="btn btn-caramel w-full !py-4 text-base">
+                    <WhatsApp className="h-5 w-5" /> WhatsApp ile gönder
                   </button>
                 </form>
               )}
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
     </>

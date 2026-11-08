@@ -1,34 +1,16 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { site } from '../data/site'
+import PageHero from '../components/PageHero'
+import Marquee from '../components/Marquee'
+import { Reveal, SplitText, CurtainImage, trackSpotlight } from '../components/motion'
+import { Cup, Leaf, Heart, Bolt, ArrowRight } from '../components/Icons'
 
 const values = [
-  {
-    icon: '☕',
-    title: 'Kalite Odaklı',
-    description: 'Dünyanın en iyi kahve bölgelerinden seçilen çekirdekler, ustaca kavrulur.',
-  },
-  {
-    icon: '🌿',
-    title: 'Sürdürülebilir',
-    description: 'Çevreye duyarlı ambalaj ve sürdürülebilir tedarik zincirine inanıyoruz.',
-  },
-  {
-    icon: '💛',
-    title: 'Topluluk',
-    description: 'Müşterilerimizle güçlü bir bağ kurarak aile ortamı yaratıyoruz.',
-  },
-  {
-    icon: '✨',
-    title: 'Yenilikçi',
-    description: 'Self-servis teknoloji ile modern ve hızlı bir kahve deneyimi sunuyoruz.',
-  },
-]
-
-const stats = [
-  { value: '2025', label: 'Kuruluş Yılı' },
-  { value: '18+', label: 'Kahve Çeşidi' },
-  { value: '100%', label: 'Taze Ür��n' },
-  { value: '⭐5', label: 'Müşteri Memnuniyeti' },
+  { Icon: Cup, title: 'Kalite odaklı', text: 'Özenle seçilen çekirdekler, dengeli demleme ve her fincanda aynı standart.' },
+  { Icon: Leaf, title: 'Sürdürülebilir', text: 'Çevreye duyarlı ambalaj ve bilinçli tedarik zincirine inanıyoruz.' },
+  { Icon: Heart, title: 'Topluluk', text: 'Mahallenin buluşma noktası olmak; müdavimlerimizle aile gibi bir ortam.' },
+  { Icon: Bolt, title: 'Yenilikçi', text: 'Self-servis düzeniyle hızlı, pratik ve modern bir kahve deneyimi.' },
 ]
 
 export default function HakkimizdaPage() {
@@ -38,160 +20,117 @@ export default function HakkimizdaPage() {
         <title>Hakkımızda | Pion Coffee</title>
         <meta
           name="description"
-          content="Pion Coffee hakkında. Kocaeli/Kartepe'de modern self-servis kahve dükkanımızın hikayesi, misyonumuz ve değerlerimiz."
+          content="Pion Coffee'nin hikâyesi: Kocaeli/Kartepe'de modern self-servis kahve dükkanı. Misyonumuz, vizyonumuz ve değerlerimiz."
         />
-        <meta name="keywords" content="Pion Coffee hakkında, kahve dükkanı hikayesi, Kartepe kahve" />
-        <link rel="canonical" href="https://pioncoffee.com/hakkimizda" />
+        <link rel="canonical" href={`${site.url}/hakkimizda/`} />
       </Head>
 
-      {/* Hero Section */}
-      <section className="relative bg-primary-500 text-white py-20 lg:py-32 overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-20"
-          style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1920&h=600&fit=crop)',
-          }}
-        />
-        <div className="container-custom relative z-10">
-          <h1 className="text-4xl lg:text-6xl font-serif font-bold mb-6">
-            Pion Coffee <br />
-            <span className="text-coffee-300">Hikayemiz</span>
-          </h1>
-          <p className="text-cream-100 text-lg lg:text-xl max-w-2xl leading-relaxed">
-            Kahve sevgisiyle başladı, kalite tutkusuyla büyüdü. 
-            Kocaeli/Kartepe&apos;nin ilk modern self-servis kahve dükkanı olarak yola çıktık.
-          </p>
+      <PageHero
+        eyebrow="Hakkımızda"
+        title="Kahve sevgisiyle"
+        accent="başladık."
+        description="Kalite tutkusuyla büyüyoruz. Kartepe'de modern self-servis konseptiyle kapılarımızı açtık."
+        image={site.cafePhoto}
+      />
+
+      {/* Hikâye */}
+      <section className="section-padding">
+        <div className="container-custom grid items-center gap-14 lg:grid-cols-12">
+          <div className="lg:col-span-6">
+            <Reveal>
+              <span className="eyebrow">Nasıl başladık?</span>
+            </Reveal>
+            <h2 className="display mt-5 text-5xl text-ink-900 sm:text-6xl">
+              <SplitText text="Kahve içmek değil," /> <SplitText text="deneyimlemek." delay={200} className="italic text-caramel-500" />
+            </h2>
+            <div className="mt-8 space-y-5 text-lg leading-relaxed text-ink-500">
+              <Reveal delay={100}>
+                <p>
+                  Pion Coffee, kahveye duyulan derin bir sevgiyle ve insanlara en kaliteli kahve deneyimini sunma arzusuyla doğdu. Kartepe&apos;nin Dumlupınar
+                  Mahallesi&apos;nde, Hemşire Sokak No: 9&apos;da kapılarımızı açtık.
+                </p>
+              </Reveal>
+              <Reveal delay={180}>
+                <p>
+                  Modern rustik tasarım anlayışıyla koyu ceviz tezgâh ve sıcak aydınlatmayı bir araya getirdik. Her detayı düşünerek tasarladık.
+                </p>
+              </Reveal>
+              <Reveal delay={260}>
+                <p>
+                  Self-servis konseptimiz hem hız hem özgürlük sunuyor: siparişini ver, kahven hazır olunca al. Basit, hızlı, lezzetli.
+                </p>
+              </Reveal>
+            </div>
+          </div>
+          <div className="relative lg:col-span-6">
+            <CurtainImage src={site.cafePhoto} alt="Pion Coffee iç mekân" className="aspect-[4/5] rounded-5xl" />
+            <Reveal variant="right" delay={500} className="absolute -bottom-6 -left-4 sm:-left-10">
+              <div className="rounded-3xl bg-ink-900 p-6 text-white shadow-2xl">
+                <p className="font-serif text-xl italic text-caramel-300">&ldquo;Her fincan bir hikâye anlatır.&rdquo;</p>
+                <p className="mt-2 text-xs font-bold uppercase tracking-[0.2em] text-white/50">— Pion Coffee</p>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="bg-coffee-700 py-10">
+      <div className="border-y border-ink-900/10 py-6 text-ink-900/80">
+        <Marquee items={['Kalite', 'Topluluk', 'Sürdürülebilirlik', 'Self-servis', 'Sıcak atmosfer']} reverse itemClassName="display text-5xl sm:text-6xl" />
+      </div>
+
+      {/* Misyon & vizyon */}
+      <section className="section-padding">
+        <div className="container-custom grid gap-6 md:grid-cols-2">
+          {[
+            {
+              k: 'Misyonumuz',
+              t: 'Her misafirimize en kaliteli kahve deneyimini sunmak; modern ve samimi bir ortamda insanları buluşturmak. Kalite, hız ve konfor — üçü bir arada.',
+            },
+            {
+              k: 'Vizyonumuz',
+              t: "Kocaeli'nin en sevilen kahve markası olmak. Self-servis kahve konseptini bölgeye tanıtarak kahve kültürünü yaygınlaştırmak.",
+            },
+          ].map((b, i) => (
+            <Reveal key={b.k} delay={i * 150} variant={i ? 'right' : 'left'}>
+              <div className={`grain relative h-full overflow-hidden rounded-5xl p-10 lg:p-14 ${i ? 'bg-caramel-500 text-white' : 'bg-ink-900 text-white'}`}>
+                <span className="font-serif text-7xl italic text-white/15">0{i + 1}</span>
+                <h3 className="display mt-4 text-4xl">{b.k}</h3>
+                <p className="mt-5 text-lg leading-relaxed text-white/80">{b.t}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* Değerler */}
+      <section className="pb-24 lg:pb-32">
         <div className="container-custom">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-            {stats.map((stat, i) => (
-              <div key={i}>
-                <div className="text-4xl font-serif font-bold text-white mb-1">
-                  {stat.value}
+          <div className="text-center">
+            <Reveal>
+              <span className="eyebrow">Değerlerimiz</span>
+            </Reveal>
+            <h2 className="display mt-5 text-5xl text-ink-900 sm:text-6xl">
+              <SplitText text="Bizi biz yapan" /> <SplitText text="dört şey" delay={150} className="italic text-caramel-500" />
+            </h2>
+          </div>
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {values.map(({ Icon, title, text }, i) => (
+              <Reveal key={title} delay={i * 100}>
+                <div onMouseMove={trackSpotlight} className="spotlight card-hover group h-full rounded-4xl bg-white p-8">
+                  <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-caramel-50 text-caramel-600 transition duration-500 group-hover:-rotate-12 group-hover:bg-caramel-500 group-hover:text-white">
+                    <Icon className="h-6 w-6" />
+                  </span>
+                  <h3 className="mt-8 font-serif text-2xl font-semibold text-ink-900">{title}</h3>
+                  <p className="mt-3 leading-relaxed text-ink-500">{text}</p>
                 </div>
-                <div className="text-coffee-200 font-medium">{stat.label}</div>
-              </div>
+              </Reveal>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Story Section */}
-      <section className="section-padding bg-cream-50">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl lg:text-4xl font-serif font-bold mb-6 text-coffee-900">
-                Nasıl Başladık?
-              </h2>
-              <div className="space-y-4 text-coffee-700 leading-relaxed">
-                <p>
-                  Pion Coffee, kahveye duyulan derin bir sevgiyle ve insanlara 
-                  en kaliteli kahve deneyimini sunma arzusuyla doğdu. Kocaeli&apos;nin 
-                  hızla büyüyen Kartepe ilçesinde, Dumlupınar mahallesi Hemşire sokak 
-                  numara 9&apos;da kapılarımızı açtık.
-                </p>
-                <p>
-                  Modern rustik tasarım anlayışımız, koyu ceviz tezgah ve sıcak 
-                  aydınlatma ile rahat ve davetkar bir ortam yarattık. Her detayı 
-                  düşünerek tasarladık — çünkü kahve içmek sadece içmek değil, 
-                  deneyimlemektir.
-                </p>
-                <p>
-                  Self-servis konseptimiz, müşterilerimize hem hız hem de özgürlük 
-                  sunuyor. Siparişinizi kendiniz verin, kahveniz hazır olduğunda 
-                  bildirim alın. Basit, hızlı, lezzetli.
-                </p>
-              </div>
-            </div>
-            <div className="relative pb-8 lg:pb-10">
-              <img
-                src="https://i.ibb.co/dwN72fVx/Kafe-G-rsel.jpg"
-                alt="Pion Coffee iç mekan"
-                className="rounded-xl shadow-xl w-full"
-              />
-              <div className="mt-4 lg:absolute lg:-bottom-2 lg:left-4 bg-coffee-900 text-white p-5 rounded-xl shadow-xl lg:max-w-xs">
-                <p className="font-serif italic text-primary-300 text-lg">
-                  &ldquo;Her fincan bir hikaye anlatır.&rdquo;
-                </p>
-                <p className="text-cream-200 text-sm mt-2">— Pion Coffee</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mission & Vision */}
-      <section className="section-padding bg-primary-500 text-white">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div className="bg-primary-400 p-8 rounded-xl">
-              <div className="text-coffee-900 text-4xl mb-4">🎯</div>
-              <h3 className="text-2xl font-serif font-bold mb-4">Misyonumuz</h3>
-              <p className="text-cream-100 leading-relaxed">
-                Her müşterimize en kaliteli kahve deneyimini sunmak, modern ve samimi 
-                bir ortamda insanları buluşturmak. Kalite, hız ve konfor — üçünü bir 
-                arada sunmak bizim misyonumuz.
-              </p>
-            </div>
-            <div className="bg-primary-400 p-8 rounded-xl">
-              <div className="text-coffee-900 text-4xl mb-4">🔭</div>
-              <h3 className="text-2xl font-serif font-bold mb-4">Vizyonumuz</h3>
-              <p className="text-cream-100 leading-relaxed">
-                Kocaeli&apos;nin en sevilen kahve markası olmak. Self-servis kahve 
-                konseptini bölgeye tanıtarak kahve kültürünü yaygınlaştırmak ve 
-                sürdürülebilir bir işletme modeli geliştirmek.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Values Section */}
-      <section className="section-padding bg-cream-100">
-        <div className="container-custom">
-          <h2 className="text-3xl lg:text-4xl font-serif font-bold text-center mb-12 text-coffee-900">
-            Değerlerimiz
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((value, i) => (
-              <div
-                key={i}
-                className="bg-white text-center p-6 rounded-xl shadow-md card-hover"
-              >
-                <div className="text-5xl mb-4">{value.icon}</div>
-                <h3 className="text-xl font-semibold text-coffee-900 mb-2">
-                  {value.title}
-                </h3>
-                <p className="text-coffee-700 text-sm">{value.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Gallery Preview */}
-      <section className="section-padding bg-cream-50">
-        <div className="container-custom">
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="section-padding bg-coffee-700">
-        <div className="container-custom text-center">
-          <h2 className="text-3xl lg:text-4xl font-serif font-bold mb-6 text-white">
-            Bizi Ziyaret Edin
-          </h2>
-          <p className="text-coffee-100 text-lg mb-8 max-w-xl mx-auto">
-            Kahvemiz sizi bekliyor. Kocaeli/Kartepe&apos;de sizi görmek isteriz.
-          </p>
-          <Link href="/iletisim" className="btn-coffee text-lg px-8 py-4">
-            İletişime Geçin
-          </Link>
+          <Reveal className="mt-16 text-center">
+            <Link href="/iletisim" className="btn btn-ink">
+              Bize ulaşın <ArrowRight className="btn-arrow h-4 w-4" />
+            </Link>
+          </Reveal>
         </div>
       </section>
     </>
