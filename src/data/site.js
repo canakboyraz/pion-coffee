@@ -20,9 +20,9 @@ export const site = {
     'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3847.2072!2d30.0267!3d40.7611!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sPion%20Coffee!5e0!3m2!1str!2str!4f0!5f0!5f0!5m2!1e1!1u!1e1!1e3!3m1!1e1',
   // menu.json'daki fiyatlar güncel değilse false bırakın; güncelleyince true yapın.
   showPrices: false,
-  // Hero'da gerçek bir video kullanmak için: dosyayı public/videos/hero.mp4 olarak ekleyip
-  // aşağıyı '/videos/hero.mp4' yapın. null iken animasyonlu kahve sahnesi gösterilir.
-  heroVideo: null,
+  // Hero arka plan videosu. null yaparsanız yerine animasyonlu (SVG) kahve sahnesi gösterilir.
+  heroVideo: '/videos/hero.mp4',
+  heroPoster: '/videos/hero-poster.jpg',
   hours: {
     label: 'Her gün',
     opens: '10:00',

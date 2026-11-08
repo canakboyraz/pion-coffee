@@ -430,7 +430,7 @@
 
 /* ---------- Hero video arka planı ---------- */
 .hero-video { animation: heroZoom 18s ease-in-out infinite alternate; }
-@keyframes heroZoom { from { transform: scale(1.04); } to { transform: scale(1.14); } }
+@keyframes heroZoom { from { transform: scale(1); } to { transform: scale(1.06); } }
 
 /* Kayan şerit */
 .marquee-track {
