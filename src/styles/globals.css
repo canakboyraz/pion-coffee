@@ -389,9 +389,9 @@
   animation: sipArm var(--sip) cubic-bezier(.55, 0, .3, 1) infinite;
 }
 @keyframes sipArm {
-  0%, 18% { transform: rotate(24deg); }
+  0%, 18% { transform: rotate(16deg); }
   36%, 62% { transform: rotate(0deg); }
-  80%, 100% { transform: rotate(24deg); }
+  80%, 100% { transform: rotate(16deg); }
 }
 /* Kupa, kol dönerken dik kalır; yudum anında ağza doğru eğilir */
 .sip-scene .sip-cup {
@@ -400,11 +400,11 @@
   animation: sipCup var(--sip) cubic-bezier(.55, 0, .3, 1) infinite;
 }
 @keyframes sipCup {
-  0%, 18% { transform: rotate(-24deg); }
+  0%, 18% { transform: rotate(-16deg); }
   36% { transform: rotate(0deg); }
   44%, 56% { transform: rotate(-22deg) translate(-6px, -4px); }
   62% { transform: rotate(0deg); }
-  80%, 100% { transform: rotate(-24deg); }
+  80%, 100% { transform: rotate(-16deg); }
 }
 .sip-scene .sip-head {
   transform-box: view-box;
